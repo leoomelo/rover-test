@@ -1,0 +1,112 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/plateaus":
+    get:
+      summary: list plateaus
+      tags:
+      - Plateaus
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                  required:
+                  - id
+                  - width
+                  - height
+    post:
+      summary: create plateau
+      tags:
+      - Plateaus
+      parameters: []
+      responses:
+        '201':
+          description: created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                width:
+                  type: integer
+                height:
+                  type: integer
+              required:
+              - width
+              - height
+  "/api/v1/plateaus/upload":
+    post:
+      summary: Uploads a file
+      tags:
+      - Upload
+      parameters: []
+      responses:
+        '200':
+          description: file uploaded
+        '400':
+          description: missing file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: file
+        required: true
+        description: File to upload
+  "/api/v1/plateaus/{plateau_id}/rovers":
+    post:
+      summary: create rover
+      tags:
+      - Rovers
+      parameters:
+      - name: plateau_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pos_x:
+                  type: integer
+                pos_y:
+                  type: integer
+                direction:
+                  type: string
+                  enum:
+                  - "N"
+                  - E
+                  - S
+                  - W
+              required:
+              - pos_x
+              - pos_y
+              - direction
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
