@@ -15,6 +15,6 @@ class Rover < ApplicationRecord
   end
 
   def execute_commands(commands)
-    #TODO Service to process commands
+    RoverService::Movement.new(self).call(commands)
   end
 end
