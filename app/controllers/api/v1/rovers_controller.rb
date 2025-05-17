@@ -6,6 +6,12 @@ class Api::V1::RoversController < ApplicationController
     render json: rover, status: :created
   end
 
+  def commands
+    rover = @plateau.rovers.find(params[:id])
+    rover.execute_commands(params[:commands])
+    render json: serialize_rover(rover)
+  end
+
   private
 
   def set_plateau

@@ -11,7 +11,7 @@ class Api::V1::PlateausController < ApplicationController
   def upload
     file = params[:file]
     if file.nil? || file.blank?
-      render json: { error: 'File not sent' }, status: :bad_request
+      render json: { error: "File not sent" }, status: :bad_request
       return
     end
 
