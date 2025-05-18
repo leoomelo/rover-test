@@ -6,9 +6,16 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
+DB_PATH="db/development.sqlite3"
+
+if [ ! -f "$DB_PATH" ]; then
+  echo "Creating database..."
+  ./bin/rails db:create db:migrate
+fi
+
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
-  ./bin/rails db:prepare
+  exec ./bin/rails server -b 0.0.0.0 -p 3000
 fi
 
 exec "${@}"
