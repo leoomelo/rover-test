@@ -105,8 +105,42 @@ paths:
               - pos_x
               - pos_y
               - direction
+  "/api/v1/plateaus/{plateau_id}/rovers/{id}/commands":
+    post:
+      summary: send commands to rover
+      tags:
+      - Rovers
+      parameters:
+      - name: plateau_id
+        in: path
+        description: Plateau ID
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        description: Rover ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: commands executed successfully
+        '422':
+          description: invalid commands
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commands:
+                  type: string
+                  example: MMRMMRMRRM
+              required:
+              - commands
 servers:
 - url: https://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost
