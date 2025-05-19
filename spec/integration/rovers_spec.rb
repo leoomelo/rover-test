@@ -47,9 +47,9 @@ RSpec.describe 'Rovers API', type: :request do
       parameter name: :command, in: :body, schema: {
         type: :object,
         properties: {
-          commands: { type: :string, example: 'MMRMMRMRRM'}
+          commands: { type: :string, example: 'MMRMMRMRRM' }
         },
-        required: ['commands']
+        required: [ 'commands' ]
       }
 
       response(200, 'commands executed successfully') do
