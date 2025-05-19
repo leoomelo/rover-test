@@ -2,16 +2,16 @@
 
 # 🚀 Rover Command API
 
-API for executing rover movement commands within a defined plateau.  
+API for executing rover movement commands within a defined plateau.
 Rovers are positioned on a grid-based plateau and follow movement instructions that rotate or advance them based on direction.
 
 ## 🧭 Overview
 
 Each rover starts at a specified position on the plateau, facing one of the four cardinal directions:
 
-- `N` – North  
-- `E` – East  
-- `S` – South  
+- `N` – North
+- `E` – East
+- `S` – South
 - `W` – West
 
 ### Movement Rules
@@ -51,6 +51,8 @@ curl -X POST http://localhost:3000/api/v1/plateaus/2/rovers/2/commands \
 
 curl -X POST http://localhost:3000/api/v1/plateaus/upload \
      -F "file=@<:path>/rover_test.txt"
+
+![alt text](upload_file_postman.png)
 
 📚 Swagger API Documentation
 
