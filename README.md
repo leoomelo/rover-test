@@ -52,7 +52,6 @@ curl -X POST http://localhost:3000/api/v1/plateaus/2/rovers/2/commands \
 curl -X POST http://localhost:3000/api/v1/plateaus/upload \
      -F "file=@<:path>/rover_test.txt"
 
-![alt text](upload_file_postman.png)
 
 📚 Swagger API Documentation
 
